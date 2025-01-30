@@ -1,14 +1,25 @@
 package org.HuellaCarbono.model.entity;
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "habito", schema = "huellacarbono")
 public class Habito {
+    @EmbeddedId
+    private HabitoId id;
+
+    @MapsId("idUsuario")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "id_usuario", nullable = false)
+    private org.HuellaCarbono.model.entity.Usuario idUsuario;
+
+    @MapsId("idActividad")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "id_actividad", nullable = false)
+    private Actividad idActividad;
+
     @Column(name = "fecuencia", length = 50)
     private String fecuencia;
 
@@ -18,15 +29,29 @@ public class Habito {
     @Column(name = "ultima_fecha")
     private LocalDate ultimaFecha;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name = "id_usuario")
-    private org.HuellaCarbono.model.entity.Usuario idUsuario;
+    public HabitoId getId() {
+        return id;
+    }
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name = "id_actividad")
-    private Actividad idActividad;
+    public void setId(HabitoId id) {
+        this.id = id;
+    }
+
+    public org.HuellaCarbono.model.entity.Usuario getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(org.HuellaCarbono.model.entity.Usuario idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    public Actividad getIdActividad() {
+        return idActividad;
+    }
+
+    public void setIdActividad(Actividad idActividad) {
+        this.idActividad = idActividad;
+    }
 
     public String getFecuencia() {
         return fecuencia;
@@ -50,22 +75,6 @@ public class Habito {
 
     public void setUltimaFecha(LocalDate ultimaFecha) {
         this.ultimaFecha = ultimaFecha;
-    }
-
-    public org.HuellaCarbono.model.entity.Usuario getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(org.HuellaCarbono.model.entity.Usuario idUsuario) {
-        this.idUsuario = idUsuario;
-    }
-
-    public Actividad getIdActividad() {
-        return idActividad;
-    }
-
-    public void setIdActividad(Actividad idActividad) {
-        this.idActividad = idActividad;
     }
 
 }

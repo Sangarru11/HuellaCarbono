@@ -22,6 +22,9 @@ public class Categoria {
     @Column(name = "factor_emision", nullable = false, length = 50)
     private String factorEmision;
 
+    @Column(name = "unidad", length = 50)
+    private String unidad;
+
     @OneToMany(mappedBy = "idCategoria")
     private Set<Actividad> actividads = new LinkedHashSet<>();
 
@@ -50,6 +53,14 @@ public class Categoria {
 
     public void setFactorEmision(String factorEmision) {
         this.factorEmision = factorEmision;
+    }
+
+    public String getUnidad() {
+        return unidad;
+    }
+
+    public void setUnidad(String unidad) {
+        this.unidad = unidad;
     }
 
     public Set<Actividad> getActividads() {
