@@ -7,7 +7,7 @@
         <!-- Database connection settings -->
         <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
         <property name="hibernate.connection.url">
-            jdbc:mysql://localhost:3306/huella_carbono_db?useSSL=false&amp;serverTimezone=UTC</property>
+            jdbc:mysql://localhost:3306/huellacarbono?useSSL=false&amp;serverTimezone=UTC</property>
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.connection.password"></property>
 
@@ -19,13 +19,12 @@
         <property name="hibernate.show_sql">false</property>
         <property name="hibernate.format_sql">true</property>
 
-        <mapping class="com.github.JuanManuel.model.entity.Usuario"/>
-        <mapping class="com.github.JuanManuel.model.entity.Actividad"/>
-        <mapping class="com.github.JuanManuel.model.entity.Categoria"/>
-        <mapping class="com.github.JuanManuel.model.entity.Habito"/>
-        <mapping class="com.github.JuanManuel.model.entity.Huella"/>
-        <mapping class="com.github.JuanManuel.model.entity.Recomendacion"/>
-        <mapping class="com.github.JuanManuel.model.entity.HabitoId"/>
+        <mapping class="org.HuellaCarbono.model.entity.Usuario"/>
+        <mapping class="org.HuellaCarbono.model.entity.Actividad"/>
+        <mapping class="org.HuellaCarbono.model.entity.Categoria"/>
+        <mapping class="org.HuellaCarbono.model.entity.Habito"/>
+        <mapping class="org.HuellaCarbono.model.entity.Huella"/>
+        <mapping class="org.HuellaCarbono.model.entity.Recomendacion"/>
 
     </session-factory>
 </hibernate-configuration>

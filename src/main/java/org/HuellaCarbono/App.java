@@ -4,7 +4,12 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import org.HuellaCarbono.view.Controller;
+import org.HuellaCarbono.view.MainController;
+import org.HuellaCarbono.view.Scenes;
+import org.HuellaCarbono.view.View;
 
 import java.io.IOException;
 
@@ -13,11 +18,18 @@ import java.io.IOException;
  */
 public class App extends Application {
 
-    private static Scene scene;
+    public static Scene scene;
+    public static Stage stage;
+    public static Controller currentController;
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("primary"), 640, 480);
+        View view = MainController.loadFXML(Scenes.Primary);
+        scene = new Scene(view.scene, 640, 480);
+        currentController = view.controller;
+        currentController.onOpen(null);
+        App.stage = stage;
+        stage.setTitle("Cuneta Party");
         stage.setScene(scene);
         stage.show();
     }
