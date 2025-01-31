@@ -1,5 +1,7 @@
 package org.HuellaCarbono.model.DAO;
 
+import org.HuellaCarbono.model.entity.Habito;
+import org.HuellaCarbono.model.entity.HabitoId;
 import org.HuellaCarbono.model.entity.Huella;
 import org.hibernate.Session;
 
@@ -56,6 +58,11 @@ public class HuellaDAO implements DAO<Huella, String> {
         ss.getTransaction().commit();
         ss.close();
         return huella;
+    }
+
+    @Override
+    public Habito findById(HabitoId id) {
+        return null;
     }
 
     @Override

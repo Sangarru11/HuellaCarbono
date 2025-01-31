@@ -24,12 +24,13 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        View view = MainController.loadFXML(Scenes.Primary);
+        View view = MainController.loadFXML(Scenes.WelcomePage);
         scene = new Scene(view.scene, 640, 480);
         currentController = view.controller;
         currentController.onOpen(null);
         App.stage = stage;
-        stage.setTitle("Cuneta Party");
+        stage.setTitle("Huella Carbono");
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("/org/HuellaCarbono/view/images/HuellaCarbonoLogo.PNG")));
         stage.setScene(scene);
         stage.show();
     }

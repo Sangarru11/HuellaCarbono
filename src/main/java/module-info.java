@@ -7,7 +7,9 @@ module org.HuellaCarbono {
     requires java.desktop;
 
     opens org.HuellaCarbono to javafx.fxml;
-    exports org.HuellaCarbono;
-
     opens org.HuellaCarbono.model.entity to org.hibernate.orm.core;
+    opens org.HuellaCarbono.view to javafx.fxml;
+
+    exports org.HuellaCarbono;
+    exports org.HuellaCarbono.view;
 }
