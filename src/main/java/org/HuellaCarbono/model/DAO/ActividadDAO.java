@@ -1,6 +1,8 @@
 package org.HuellaCarbono.model.DAO;
 
 import org.HuellaCarbono.model.entity.Actividad;
+import org.HuellaCarbono.model.entity.Habito;
+import org.HuellaCarbono.model.entity.HabitoId;
 import org.hibernate.Session;
 
 import java.io.IOException;
@@ -56,6 +58,11 @@ public class ActividadDAO implements DAO<Actividad, Integer> {
         ss.getTransaction().commit();
         ss.close();
         return actividad;
+    }
+
+    @Override
+    public Habito findById(HabitoId id) {
+        return null;
     }
 
     @Override
