@@ -5,6 +5,7 @@ module org.HuellaCarbono {
     requires jakarta.persistence;
     requires org.hibernate.orm.core;
     requires java.desktop;
+    requires jdk.compiler;
 
     opens org.HuellaCarbono to javafx.fxml;
     opens org.HuellaCarbono.model.entity to org.hibernate.orm.core;

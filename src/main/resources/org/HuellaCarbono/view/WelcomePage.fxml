@@ -22,12 +22,12 @@
             </ImageView>
             <AnchorPane layoutX="67.0" layoutY="173.0" prefHeight="327.0" prefWidth="465.0" styleClass="rounded-pane">
                <children>
-                  <TextField fx:id="txtUsername" layoutX="185.0" layoutY="101.0" promptText="Nombre">
+                  <TextField fx:id="txtUsername" layoutX="185.0" layoutY="101.0" promptText="Nombre" text="Perico">
                      <cursor>
                         <Cursor fx:constant="TEXT" />
                      </cursor>
                   </TextField>
-                  <PasswordField fx:id="txtPassword" layoutX="185.0" layoutY="163.0" promptText="Contraseña">
+                  <PasswordField fx:id="txtPassword" layoutX="185.0" layoutY="163.0" promptText="Contraseña" text="1234">
                      <cursor>
                         <Cursor fx:constant="TEXT" />
                      </cursor>

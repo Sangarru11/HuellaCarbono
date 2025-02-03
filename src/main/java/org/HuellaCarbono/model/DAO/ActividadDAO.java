@@ -69,7 +69,7 @@ public class ActividadDAO implements DAO<Actividad, Integer> {
     public List<Actividad> findAll() {
         Session ss = sF.openSession();
         ss.beginTransaction();
-        List<Actividad> actividades = ss.createQuery("from Actividad", Actividad.class).list();
+        List<Actividad> actividades = ss.createQuery("from Actividad a join fetch a.idCategoria", Actividad.class).list();
         ss.getTransaction().commit();
         ss.close();
         return actividades;

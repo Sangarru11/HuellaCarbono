@@ -50,13 +50,13 @@ public class WelcomePageController extends Controller implements Initializable {
 
         if (user != null) {
             if (password.equals(user.getContrasena())) {
-                changeScene(Scenes.MainPage, user);
+                MainController.changeScene(Scenes.MainPage, user.getId()); // Pass user ID
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setContentText("Contraseña incorrecta.");
                 alert.show();
             }
-        }else {
+        } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Usuario no encontrado.");
             alert.show();

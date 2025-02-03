@@ -3,6 +3,7 @@ package org.HuellaCarbono.model.DAO;
 import org.HuellaCarbono.model.entity.Habito;
 import org.HuellaCarbono.model.entity.HabitoId;
 import org.HuellaCarbono.model.entity.Huella;
+import org.HuellaCarbono.model.entity.Usuario;
 import org.hibernate.Session;
 
 import java.io.IOException;
@@ -70,6 +71,15 @@ public class HuellaDAO implements DAO<Huella, String> {
         Session ss = sF.openSession();
         ss.beginTransaction();
         List<Huella> huellas = ss.createQuery("from Huella", Huella.class).list();
+        ss.getTransaction().commit();
+        ss.close();
+        return huellas;
+    }
+
+    public List<Huella> findByUser(Usuario usuario) {
+        Session ss = sF.openSession();
+        ss.beginTransaction();
+        List<Huella> huellas = ss.createQuery("from Huella h join fetch h.idActividad a join fetch a.idCategoria where h.idUsuario = :usuario", Huella.class).setParameter("usuario", usuario).list();
         ss.getTransaction().commit();
         ss.close();
         return huellas;
