@@ -14,23 +14,23 @@ public class Huella {
     @Column(name = "id_registro", nullable = false)
     private Integer id;
 
-    @Column(name = "valor")
+    @Column(name = "valor", nullable = false)
     private Integer valor;
 
-    @Column(name = "unidad", length = 50)
+    @Column(name = "unidad", length = 50, nullable = false)
     private String unidad;
 
-    @Column(name = "fecha")
+    @Column(name = "fecha", nullable = false)
     private LocalDate fecha;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name = "id_usuario")
-    private org.HuellaCarbono.model.entity.Usuario idUsuario;
+    @JoinColumn(name = "id_usuario", nullable = false)
+    private Usuario idUsuario;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name = "id_actividad")
+    @JoinColumn(name = "id_actividad", nullable = false)
     private Actividad idActividad;
 
     public Integer getId() {

@@ -1,14 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="org.HuellaCarbono.view.MainPageController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="720.0" prefWidth="1075.0" style="-fx-background-color: #e0eaebe7;" stylesheets="@css/MainPage.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.HuellaCarbono.view.MainPageController">
+   <children>
+      <HBox layoutX="-8.0" layoutY="-16.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #5fbcdc;" />
+      <TableView fx:id="tableView" layoutX="182.0" layoutY="181.0" prefHeight="357.0" prefWidth="712.0">
+        <columns>
+          <TableColumn fx:id="Actividad" prefWidth="267.9999694824219" text="Actividad" />
+          <TableColumn fx:id="Cantidad" prefWidth="90.0" text="Cantidad" />
+            <TableColumn fx:id="Unidad" prefWidth="112.6666259765625" text="Unidad" />
+            <TableColumn fx:id="Fecha" prefWidth="116.66668701171875" text="Fecha" />
+            <TableColumn fx:id="ImpactoHC" prefWidth="126.0" text="Impacto HC" />
+        </columns>
+      </TableView>
+      <HBox alignment="CENTER" layoutX="867.0" layoutY="22.0" onMouseClicked="#goToRegistrarHuella" prefHeight="62.0" prefWidth="169.0" styleClass="rounded-pane">
+         <children>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Registrar Huella" wrappingWidth="98.32339477539062">
+               <font>
+                  <Font name="Georgia Bold" size="19.0" />
+               </font>
+            </Text>
+            <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/RegisterLogo.png" />
+               </image>
+            </ImageView>
+         </children>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="-8.0" prefHeight="62.0" prefWidth="169.0">
+         <children>
+            <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/HuellaCarbonoLogo.PNG" />
+               </image>
+            </ImageView>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Huella">
+               <font>
+                  <Font name="Georgia" size="28.0" />
+               </font>
+            </Text>
+         </children>
+      </HBox>
+   </children>
 </AnchorPane>

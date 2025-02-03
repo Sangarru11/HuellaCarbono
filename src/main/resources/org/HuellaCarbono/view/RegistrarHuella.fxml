@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="617.0" prefWidth="600.0" style="-fx-background-color: #E0EAEBE7;" stylesheets="@css/RegistrarHuella.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.HuellaCarbono.view.RegistrarHuellaController">
+   <children>
+      <AnchorPane layoutX="50.0" layoutY="33.0" prefHeight="550.0" prefWidth="500.0" styleClass="rounded-pane">
+         <children>
+            <HBox alignment="CENTER" layoutX="153.0" layoutY="408.0" onMouseClicked="#registrarHuella" prefHeight="78.0" prefWidth="193.0" style="-fx-background-color: #5FBCDCFF;">
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Añadir Huella" wrappingWidth="106.97393798828125">
+                     <font>
+                        <Font name="Georgia" size="25.0" />
+                     </font>
+                  </Text>
+                  <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/AddTask.png" />
+                     </image>
+                  </ImageView>
+               </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </HBox>
+            <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="451.0" layoutY="501.0" onMouseClicked="#returnToMain" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/Return.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <Text fill="WHITE" layoutX="220.0" layoutY="311.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha">
+               <font>
+                  <Font name="System Bold" size="21.0" />
+               </font></Text>
+            <Text fill="WHITE" layoutX="219.0" layoutY="215.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Valor">
+               <font>
+                  <Font name="Georgia Bold" size="21.0" />
+               </font></Text>
+            <DatePicker fx:id="fecha" layoutX="163.0" layoutY="332.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></DatePicker>
+            <TextField fx:id="cantidad" layoutX="161.0" layoutY="239.0" prefHeight="25.0" prefWidth="175.0">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor></TextField>
+            <Text fx:id="unidad" fill="WHITE" layoutX="346.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="53.3333740234375">
+               <font>
+                  <Font name="Georgia" size="18.0" />
+               </font>
+            </Text>
+            <ComboBox fx:id="actividadComboBox" layoutX="162.0" layoutY="144.0" prefHeight="25.0" prefWidth="175.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ComboBox>
+            <Text fill="WHITE" layoutX="187.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Actividades">
+               <font>
+                  <Font name="Georgia Bold" size="21.0" />
+               </font>
+            </Text>
+            <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="198.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/HuellaCarbonoLogo.PNG" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

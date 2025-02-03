@@ -24,13 +24,13 @@ public class Actividad {
     @OnDelete(action = OnDeleteAction.CASCADE)
     @ColumnDefault("0")
     @JoinColumn(name = "id_categoria", nullable = false)
-    private org.HuellaCarbono.model.entity.Categoria idCategoria;
+    private Categoria idCategoria;
 
     @OneToMany(mappedBy = "idActividad")
-    private Set<org.HuellaCarbono.model.entity.Habito> habitos = new LinkedHashSet<>();
+    private Set<Habito> habitos = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "idActividad")
-    private Set<org.HuellaCarbono.model.entity.Huella> huellas = new LinkedHashSet<>();
+    private Set<Huella> huellas = new LinkedHashSet<>();
 
     public Integer getId() {
         return id;
@@ -48,28 +48,32 @@ public class Actividad {
         this.nombre = nombre;
     }
 
-    public org.HuellaCarbono.model.entity.Categoria getIdCategoria() {
+    public Categoria getIdCategoria() {
         return idCategoria;
     }
 
-    public void setIdCategoria(org.HuellaCarbono.model.entity.Categoria idCategoria) {
+    public void setIdCategoria(Categoria idCategoria) {
         this.idCategoria = idCategoria;
     }
 
-    public Set<org.HuellaCarbono.model.entity.Habito> getHabitos() {
+    public Set<Habito> getHabitos() {
         return habitos;
     }
 
-    public void setHabitos(Set<org.HuellaCarbono.model.entity.Habito> habitos) {
+    public void setHabitos(Set<Habito> habitos) {
         this.habitos = habitos;
     }
 
-    public Set<org.HuellaCarbono.model.entity.Huella> getHuellas() {
+    public Set<Huella> getHuellas() {
         return huellas;
     }
 
-    public void setHuellas(Set<org.HuellaCarbono.model.entity.Huella> huellas) {
+    public void setHuellas(Set<Huella> huellas) {
         this.huellas = huellas;
     }
 
+    @Override
+    public String toString() {
+        return nombre;
+    }
 }
