@@ -79,4 +79,7 @@ public class RecomendacionDAO implements DAO<Recomendacion, String> {
     public void close() throws IOException {
         sF.close();
     }
+    public static RecomendacionDAO build() {
+        return new RecomendacionDAO();
+    }
 }

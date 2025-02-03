@@ -79,4 +79,7 @@ public class ActividadDAO implements DAO<Actividad, Integer> {
     public void close() throws IOException {
         sF.close();
     }
+    public static ActividadDAO build() {
+        return new ActividadDAO();
+    }
 }

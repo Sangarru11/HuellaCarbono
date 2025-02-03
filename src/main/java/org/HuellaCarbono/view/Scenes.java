@@ -2,7 +2,8 @@ package org.HuellaCarbono.view;
 
 public enum Scenes {
     WelcomePage("view/WelcomePage.fxml"),
-    Secondary("view/secondary.fxml");
+    RegisterPage("view/RegisterPage.fxml"),
+    MainPage("view/MainPage.fxml");
 
     private String url;
     Scenes(String url) {

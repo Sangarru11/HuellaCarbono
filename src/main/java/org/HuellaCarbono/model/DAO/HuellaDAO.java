@@ -79,4 +79,7 @@ public class HuellaDAO implements DAO<Huella, String> {
     public void close() throws IOException {
         sF.close();
     }
+    public static HuellaDAO build() {
+        return new HuellaDAO();
+    }
 }

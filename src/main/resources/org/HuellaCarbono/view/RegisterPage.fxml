@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.Cursor?>
-<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -11,40 +10,40 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="567.0" prefWidth="600.0" style="-fx-background-color: e0eaebe7;" stylesheets="@css/WelcomePage.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.HuellaCarbono.view.WelcomePageController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="613.0" prefWidth="600.0" style="-fx-background-color: e0eaebe7;" stylesheets="@css/RegisterPage.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.HuellaCarbono.view.RegisterPageController">
    <children>
-      <AnchorPane prefHeight="617.0" prefWidth="600.0">
+      <AnchorPane prefHeight="695.0" prefWidth="600.0">
          <children>
             <ImageView fitHeight="173.0" fitWidth="191.0" layoutX="214.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/HuellaCarbonoLogo.PNG" />
                </image>
             </ImageView>
-            <AnchorPane layoutX="67.0" layoutY="173.0" prefHeight="327.0" prefWidth="465.0" styleClass="rounded-pane">
+            <AnchorPane layoutX="67.0" layoutY="173.0" prefHeight="379.0" prefWidth="465.0" styleClass="rounded-pane">
                <children>
                   <TextField fx:id="txtUsername" layoutX="185.0" layoutY="101.0" promptText="Nombre">
                      <cursor>
                         <Cursor fx:constant="TEXT" />
                      </cursor>
                   </TextField>
-                  <PasswordField fx:id="txtPassword" layoutX="185.0" layoutY="163.0" promptText="Contraseña">
-                     <cursor>
-                        <Cursor fx:constant="TEXT" />
-                     </cursor>
-                  </PasswordField>
                   <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="130.0" layoutY="94.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@images/User.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="130.0" layoutY="153.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="37.0" fitWidth="37.0" layoutX="130.0" layoutY="153.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@images/Password.png" />
                      </image>
                   </ImageView>
-                  <HBox alignment="CENTER" layoutX="163.0" layoutY="229.0" onMouseClicked="#Login" prefHeight="40.0" prefWidth="139.0" style="-fx-background-color: #87dbdebe;" styleClass="rounded-pane">
+                  <TextField fx:id="txtPassword" layoutX="185.0" layoutY="162.0" promptText="Contraseña">
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
+                  </TextField>
+                  <HBox alignment="CENTER" layoutX="162.0" layoutY="283.0" onMouseClicked="#Register" prefHeight="40.0" prefWidth="139.0" style="-fx-background-color: #87dbdebe;" styleClass="rounded-pane">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Login">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sing Up">
                            <font>
                               <Font name="Georgia Bold" size="16.0" />
                            </font>
@@ -59,14 +58,24 @@
                         <Image url="@images/UserLogo.png" />
                      </image>
                   </ImageView>
-                  <Text fill="WHITE" layoutX="176.0" layoutY="302.0" onMouseClicked="#goToRegister" strokeType="OUTSIDE" strokeWidth="0.0" text="Create and accound" underline="true">
-                     <font>
-                        <Font name="Georgia" size="13.0" />
-                     </font>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="133.0" layoutY="221.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/@.png" />
+                     </image>
+                  </ImageView>
+                  <TextField fx:id="txtEmail" layoutX="185.0" layoutY="225.0" promptText="Correo Electrónico">
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
+                  </TextField>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="411.0" layoutY="325.0" onMouseClicked="#goToWelcome" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/Return.png" />
+                     </image>
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
-                  </Text>
+                  </ImageView>
                </children></AnchorPane>
          </children>
       </AnchorPane>
