@@ -78,4 +78,7 @@ public class CategoriaDAO implements DAO<Categoria, String> {
     public void close() throws IOException {
         sF.close();
     }
+    public static CategoriaDAO build() {
+        return new CategoriaDAO();
+    }
 }

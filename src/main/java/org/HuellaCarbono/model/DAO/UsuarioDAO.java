@@ -60,6 +60,15 @@ public class UsuarioDAO implements DAO<Usuario, String> {
         return usuario;
     }
 
+    public Usuario findByName(String name) {
+        Session ss = sF.openSession();
+        ss.beginTransaction();
+        Usuario usuario = ss.createQuery("from Usuario where nombre = :name", Usuario.class).setParameter("name", name).uniqueResult();
+        ss.getTransaction().commit();
+        ss.close();
+        return usuario;
+    }
+
     @Override
     public Habito findById(HabitoId id) {
         return null;
@@ -78,5 +87,8 @@ public class UsuarioDAO implements DAO<Usuario, String> {
     @Override
     public void close() throws IOException {
         sF.close();
+    }
+    public static UsuarioDAO build() {
+        return new UsuarioDAO();
     }
 }

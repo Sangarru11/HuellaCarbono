@@ -78,4 +78,8 @@ public class HabitoDAO implements DAO<Habito, HabitoId> {
     public void close() throws IOException {
         sF.close();
     }
+
+    public static HabitoDAO build() {
+        return new HabitoDAO();
+    }
 }

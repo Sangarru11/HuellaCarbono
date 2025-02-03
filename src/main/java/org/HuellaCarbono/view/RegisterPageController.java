@@ -4,7 +4,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import org.HuellaCarbono.App;
 import org.HuellaCarbono.model.DAO.UsuarioDAO;
@@ -12,16 +11,20 @@ import org.HuellaCarbono.model.entity.Usuario;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
-public class WelcomePageController extends Controller implements Initializable {
+public class RegisterPageController extends Controller implements Initializable {
     @FXML
     private TextField txtUsername;
     @FXML
-    private PasswordField txtPassword;
+    private TextField txtPassword;
+    @FXML
+    private TextField txtEmail;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        
+
     }
 
     @Override
@@ -33,13 +36,13 @@ public class WelcomePageController extends Controller implements Initializable {
     public void onClose(Object output) {
 
     }
-
     @FXML
-    public void Login() throws IOException {
+    public void Register() throws IOException {
         String username = txtUsername.getText();
         String password = txtPassword.getText();
+        String email = txtEmail.getText();
 
-        if (username.isEmpty() || password.isEmpty()) {
+        if (username.isEmpty() || password.isEmpty() || email.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Completa todos los campos.");
             alert.show();
@@ -49,28 +52,26 @@ public class WelcomePageController extends Controller implements Initializable {
         Usuario user = UsuarioDAO.build().findByName(username);
 
         if (user != null) {
-            if (password.equals(user.getContrasena())) {
-                changeScene(Scenes.MainPage, user);
-            } else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setContentText("Contraseña incorrecta.");
-                alert.show();
-            }
-        }else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Usuario no encontrado.");
+            alert.setContentText("El usuario ya existe.");
             alert.show();
+        } else {
+            Usuario newUser = new Usuario();
+            newUser.setNombre(username);
+            newUser.setContrasena(password);
+            newUser.setEmail(email);
+            newUser.setFechaRegistro(LocalDate.now());
+            UsuarioDAO.build().save(newUser);
+            changeScene(Scenes.WelcomePage, null);
         }
     }
-
     @FXML
-    private void goToRegister() throws IOException {
-        changeScene(Scenes.RegisterPage, null);
+    private void goToWelcome() throws IOException {
+        changeScene(Scenes.WelcomePage, null);
     }
-
     public static void changeScene(Scenes scene, Object data) throws IOException {
         View view = MainController.loadFXML(scene);
-        Scene _scene = new Scene(view.scene, 600, 695);
+        Scene _scene = new Scene(view.scene, 600, 617);
         App.currentController = view.controller;
         App.currentController.onOpen(data);
         App.stage.setScene(_scene);
