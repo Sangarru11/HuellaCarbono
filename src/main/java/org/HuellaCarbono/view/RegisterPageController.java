@@ -6,8 +6,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import org.HuellaCarbono.App;
-import org.HuellaCarbono.model.DAO.UsuarioDAO;
 import org.HuellaCarbono.model.entity.Usuario;
+import org.HuellaCarbono.model.services.UsuarioService;
 
 import java.io.IOException;
 import java.net.URL;
@@ -22,20 +22,27 @@ public class RegisterPageController extends Controller implements Initializable 
     @FXML
     private TextField txtEmail;
 
+    private UsuarioService usuarioService;
+
+    public RegisterPageController() {
+        this.usuarioService = new UsuarioService();
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
 
     @Override
-    public void onOpen(Object input) throws IOException {
-
+    public Object onOpen(Object input) throws IOException {
+        return input;
     }
 
     @Override
     public void onClose(Object output) {
 
     }
+
     @FXML
     public void Register() throws IOException {
         String username = txtUsername.getText();
@@ -49,7 +56,7 @@ public class RegisterPageController extends Controller implements Initializable 
             return;
         }
 
-        Usuario user = UsuarioDAO.build().findByName(username);
+        Usuario user = usuarioService.getUsuarioByUsername(username);
 
         if (user != null) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -61,14 +68,16 @@ public class RegisterPageController extends Controller implements Initializable 
             newUser.setContrasena(password);
             newUser.setEmail(email);
             newUser.setFechaRegistro(LocalDate.now());
-            UsuarioDAO.build().save(newUser);
+            usuarioService.saveUsuario(newUser);
             changeScene(Scenes.WelcomePage, null);
         }
     }
+
     @FXML
     private void goToWelcome() throws IOException {
         changeScene(Scenes.WelcomePage, null);
     }
+
     public static void changeScene(Scenes scene, Object data) throws IOException {
         View view = MainController.loadFXML(scene);
         Scene _scene = new Scene(view.scene, 600, 617);

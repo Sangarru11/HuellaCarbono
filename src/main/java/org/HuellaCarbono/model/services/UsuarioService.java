@@ -13,40 +13,30 @@ public class UsuarioService {
     }
 
     public boolean saveUsuario(Usuario usuario) {
-        if (usuarioDAO.findById(usuario.getId()) == null) {
-            List<Usuario> existingUsuarios = usuarioDAO.findAll();
-            for (Usuario existingUsuario : existingUsuarios) {
-                if (existingUsuario.getEmail().equals(usuario.getEmail())) {
-                    return false;
-                }
-            }
+        if (usuario.getId() == null) {
             return usuarioDAO.insert(usuario);
+        } else {
+            Usuario existingUsuario = usuarioDAO.findById(usuario.getId());
+            if (existingUsuario == null) {
+                return usuarioDAO.insert(usuario);
+            } else {
+                return usuarioDAO.update(usuario);
+            }
         }
-        return false;
     }
 
     public Usuario getUsuarioById(Integer id) {
         if (id == null || id <= 0) {
             return null;
         }
-        Usuario usuario = usuarioDAO.findById(id);
-        if (usuario == null) {
-            return null;
-        }
-        List<Usuario> existingUsuarios = usuarioDAO.findAll();
-        for (Usuario existingUsuario : existingUsuarios) {
-            if (existingUsuario.getId().equals(id) && !existingUsuario.equals(usuario)) {
-                return null;
-            }
-        }
-        return usuario;
+        return usuarioDAO.findById(id);
+    }
+
+    public Usuario getUsuarioByUsername(String username) {
+        return usuarioDAO.findByName(username);
     }
 
     public List<Usuario> getAllUsuarios() {
-        List<Usuario> usuarios = usuarioDAO.findAll();
-        if (usuarios == null || usuarios.isEmpty()) {
-            return null;
-        }
-        return usuarios;
+        return usuarioDAO.findAll();
     }
 }

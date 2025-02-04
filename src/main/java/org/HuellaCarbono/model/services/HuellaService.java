@@ -13,42 +13,26 @@ public class HuellaService {
     }
 
     public boolean saveHuella(Huella huella) {
-        if (huellaDAO.findById(huella.getId()) == null) {
-            List<Huella> existingHuellas = huellaDAO.findAll();
-            for (Huella existingHuella : existingHuellas) {
-                if (existingHuella.getFecha().equals(huella.getFecha()) &&
-                    existingHuella.getIdUsuario().equals(huella.getIdUsuario()) &&
-                    existingHuella.getIdActividad().equals(huella.getIdActividad())) {
-                    return false;
-                }
-            }
+        if (huella.getId() == null) {
             return huellaDAO.insert(huella);
+        } else {
+            Huella existingHuella = huellaDAO.findById(huella.getId());
+            if (existingHuella == null) {
+                return huellaDAO.insert(huella);
+            } else {
+                return huellaDAO.update(huella);
+            }
         }
-        return false;
     }
 
     public Huella getHuellaById(Integer id) {
         if (id == null || id <= 0) {
             return null;
         }
-        Huella huella = huellaDAO.findById(id);
-        if (huella == null) {
-            return null;
-        }
-        List<Huella> existingHuellas = huellaDAO.findAll();
-        for (Huella existingHuella : existingHuellas) {
-            if (existingHuella.getId().equals(id) && !existingHuella.equals(huella)) {
-                return null;
-            }
-        }
-        return huella;
+        return huellaDAO.findById(id);
     }
 
     public List<Huella> getAllHuellas() {
-        List<Huella> huellas = huellaDAO.findAll();
-        if (huellas == null || huellas.isEmpty()) {
-            return null;
-        }
-        return huellas;
+        return huellaDAO.findAll();
     }
 }
