@@ -5,15 +5,16 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import org.HuellaCarbono.model.DAO.ActividadDAO;
-import org.HuellaCarbono.model.DAO.HuellaDAO;
-import org.HuellaCarbono.model.DAO.UsuarioDAO;
 import org.HuellaCarbono.model.entity.Actividad;
 import org.HuellaCarbono.model.entity.Categoria;
 import org.HuellaCarbono.model.entity.Huella;
 import org.HuellaCarbono.model.entity.Usuario;
+import org.HuellaCarbono.model.services.ActividadService;
+import org.HuellaCarbono.model.services.HuellaService;
+import org.HuellaCarbono.model.services.UsuarioService;
 
 import java.io.IOException;
 import java.net.URL;
@@ -36,17 +37,34 @@ public class MainPageController extends Controller implements Initializable {
     private TableColumn<Huella, String> ImpactoHC;
 
     private ObservableList<Huella> huellaObservableList;
+    private UsuarioService usuarioService;
+    private HuellaService huellaService;
+    private ActividadService actividadService;
+
+    public MainPageController() {
+        this.usuarioService = new UsuarioService();
+        this.huellaService = new HuellaService();
+        this.actividadService = new ActividadService();
+    }
 
     @Override
-    public void onOpen(Object input) throws IOException {
+    public Object onOpen(Object input) throws IOException {
         if (input instanceof Integer) {
             Integer userId = (Integer) input;
-            Usuario usuario = UsuarioDAO.build().findById(userId);
-            tableView.setUserData(usuario);
-            List<Huella> huellaList = HuellaDAO.build().findByUser(usuario);
-            this.huellaObservableList = FXCollections.observableArrayList(huellaList);
-            tableView.setItems(this.huellaObservableList);
+            Usuario usuario = usuarioService.getUsuarioById(userId);
+            if (usuario != null) {
+                tableView.setUserData(usuario);
+                List<Huella> huellaList = huellaService.getAllHuellas();
+                this.huellaObservableList = FXCollections.observableArrayList(huellaList);
+                tableView.setItems(this.huellaObservableList);
+            } else {
+                // Manejar el caso donde el usuario no es encontrado
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("Usuario no encontrado.");
+                alert.show();
+            }
         }
+        return input;
     }
 
     @Override
@@ -57,14 +75,14 @@ public class MainPageController extends Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Actividad.setCellValueFactory(cellData -> {
-            Actividad actividad = ActividadDAO.build().findById(cellData.getValue().getIdActividad().getId());
+            Actividad actividad = cellData.getValue().getIdActividad();
             return new SimpleStringProperty(actividad != null ? actividad.getNombre() : "");
         });
         Cantidad.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getValor().toString()));
         Unidad.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getUnidad()));
         Fecha.setCellValueFactory(cellData -> {
             LocalDate fecha = cellData.getValue().getFecha();
-            return new SimpleStringProperty(fecha != null ? fecha.toString() : ""); // Handle null date
+            return new SimpleStringProperty(fecha != null ? fecha.toString() : "");
         });
         ImpactoHC.setCellValueFactory(cellData -> {
             Huella huella = cellData.getValue();
@@ -77,7 +95,6 @@ public class MainPageController extends Controller implements Initializable {
     @FXML
     public void goToRegistrarHuella() throws IOException {
         Usuario usuario = (Usuario) tableView.getUserData();
-            WelcomePageController.changeScene(Scenes.RegistrarHuella, usuario.getId());
-
+        WelcomePageController.changeScene(Scenes.RegistrarHuella, usuario.getId());
     }
 }

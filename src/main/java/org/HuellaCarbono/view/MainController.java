@@ -18,8 +18,9 @@ public class MainController extends Controller implements Initializable {
     }
 
     @Override
-    public void onOpen(Object input) throws IOException {
+    public Object onOpen(Object input) throws IOException {
 
+        return input;
     }
 
     @Override

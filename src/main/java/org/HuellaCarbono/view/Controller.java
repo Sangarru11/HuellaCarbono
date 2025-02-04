@@ -10,7 +10,7 @@ public abstract class Controller {
         this.app=app;
     }
 
-    public abstract void onOpen(Object input) throws IOException;
+    public abstract Object onOpen(Object input) throws IOException;
 
     public abstract void onClose(Object output);
 }

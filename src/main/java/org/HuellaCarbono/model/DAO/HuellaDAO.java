@@ -70,7 +70,7 @@ public class HuellaDAO implements DAO<Huella, String> {
     public List<Huella> findAll() {
         Session ss = sF.openSession();
         ss.beginTransaction();
-        List<Huella> huellas = ss.createQuery("from Huella", Huella.class).list();
+        List<Huella> huellas = ss.createQuery("from Huella h join fetch h.idActividad a join fetch a.idCategoria", Huella.class).list();
         ss.getTransaction().commit();
         ss.close();
         return huellas;
