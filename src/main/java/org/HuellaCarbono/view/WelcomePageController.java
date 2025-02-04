@@ -57,7 +57,7 @@ public class WelcomePageController extends Controller implements Initializable {
 
         if (user != null) {
             if (password.equals(user.getContrasena())) {
-                MainController.changeScene(Scenes.MainPage, user.getId()); // Pass user ID
+                changeScene(Scenes.sHuellaHabito, user.getId());
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setContentText("Contraseña incorrecta.");

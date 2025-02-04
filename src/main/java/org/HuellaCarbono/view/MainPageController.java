@@ -9,10 +9,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import org.HuellaCarbono.model.entity.Actividad;
-import org.HuellaCarbono.model.entity.Categoria;
 import org.HuellaCarbono.model.entity.Huella;
 import org.HuellaCarbono.model.entity.Usuario;
-import org.HuellaCarbono.model.services.ActividadService;
 import org.HuellaCarbono.model.services.HuellaService;
 import org.HuellaCarbono.model.services.UsuarioService;
 
@@ -21,6 +19,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 public class MainPageController extends Controller implements Initializable {
     @FXML
@@ -39,12 +38,10 @@ public class MainPageController extends Controller implements Initializable {
     private ObservableList<Huella> huellaObservableList;
     private UsuarioService usuarioService;
     private HuellaService huellaService;
-    private ActividadService actividadService;
 
     public MainPageController() {
         this.usuarioService = new UsuarioService();
         this.huellaService = new HuellaService();
-        this.actividadService = new ActividadService();
     }
 
     @Override
@@ -54,14 +51,12 @@ public class MainPageController extends Controller implements Initializable {
             Usuario usuario = usuarioService.getUsuarioById(userId);
             if (usuario != null) {
                 tableView.setUserData(usuario);
-                List<Huella> huellaList = huellaService.getAllHuellas();
+                List<Huella> huellaList = huellaService.getAllHuellas()
+                        .stream()
+                        .filter(huella -> huella.getIdUsuario().getId().equals(userId))
+                        .collect(Collectors.toList());
                 this.huellaObservableList = FXCollections.observableArrayList(huellaList);
                 tableView.setItems(this.huellaObservableList);
-            } else {
-                // Manejar el caso donde el usuario no es encontrado
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setContentText("Usuario no encontrado.");
-                alert.show();
             }
         }
         return input;
@@ -86,8 +81,8 @@ public class MainPageController extends Controller implements Initializable {
         });
         ImpactoHC.setCellValueFactory(cellData -> {
             Huella huella = cellData.getValue();
-            Categoria categoria = huella.getIdActividad().getIdCategoria();
-            double impactoHC = huella.getValor() * Double.parseDouble(categoria.getFactorEmision());
+            Actividad actividad = huella.getIdActividad();
+            double impactoHC = huella.getValor() * Double.parseDouble(actividad.getIdCategoria().getFactorEmision());
             return new SimpleStringProperty(String.valueOf(impactoHC));
         });
     }

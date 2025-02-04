@@ -1,7 +1,6 @@
 package org.HuellaCarbono.model.entity;
 
 import jakarta.persistence.*;
-
 import java.time.LocalDate;
 
 @Entity
@@ -13,7 +12,7 @@ public class Habito {
     @MapsId("idUsuario")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_usuario", nullable = false)
-    private org.HuellaCarbono.model.entity.Usuario idUsuario;
+    private Usuario idUsuario;
 
     @MapsId("idActividad")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -37,11 +36,11 @@ public class Habito {
         this.id = id;
     }
 
-    public org.HuellaCarbono.model.entity.Usuario getIdUsuario() {
+    public Usuario getIdUsuario() {
         return idUsuario;
     }
 
-    public void setIdUsuario(org.HuellaCarbono.model.entity.Usuario idUsuario) {
+    public void setIdUsuario(Usuario idUsuario) {
         this.idUsuario = idUsuario;
     }
 
@@ -76,5 +75,4 @@ public class Habito {
     public void setUltimaFecha(LocalDate ultimaFecha) {
         this.ultimaFecha = ultimaFecha;
     }
-
 }

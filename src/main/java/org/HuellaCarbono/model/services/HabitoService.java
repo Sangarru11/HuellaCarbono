@@ -1,53 +1,69 @@
 package org.HuellaCarbono.model.services;
 
 import org.HuellaCarbono.model.DAO.HabitoDAO;
+import org.HuellaCarbono.model.entity.Actividad;
 import org.HuellaCarbono.model.entity.Habito;
 import org.HuellaCarbono.model.entity.HabitoId;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
 
 import java.util.List;
 
 public class HabitoService {
     private HabitoDAO habitoDAO;
+    private SessionFactory sessionFactory;
 
     public HabitoService() {
         this.habitoDAO = new HabitoDAO();
+        this.sessionFactory = new Configuration().configure().buildSessionFactory();
     }
 
     public boolean saveHabito(Habito habito) {
-        if (habitoDAO.findById(habito.getId()) == null) {
-            List<Habito> existingHabitos = habitoDAO.findAll();
-            for (Habito existingHabito : existingHabitos) {
-                if (existingHabito.getId().equals(habito.getId())) {
-                    return false; // Duplicado encontrado
+        Session session = sessionFactory.openSession();
+        try {
+            session.beginTransaction();
+
+            // Fusionar la entidad Actividad para asegurarse de que esté gestionada por la sesión actual
+            Actividad managedActividad = (Actividad) session.merge(habito.getIdActividad());
+            habito.setIdActividad(managedActividad);
+
+            if (habito.getId() == null) {
+                HabitoId habitoId = new HabitoId();
+                habitoId.setIdUsuario(habito.getIdUsuario().getId());
+                habitoId.setIdActividad(managedActividad.getId());
+                habito.setId(habitoId);
+                habitoDAO.insert(habito);
+            } else {
+                Habito existingHabito = habitoDAO.findById(habito.getId());
+                if (existingHabito == null) {
+                    habitoDAO.insert(habito);
+                } else {
+                    habitoDAO.update(habito);
                 }
             }
-            return habitoDAO.insert(habito);
+
+            session.getTransaction().commit();
+            return true;
+        } catch (Exception e) {
+            if (session.getTransaction() != null) {
+                session.getTransaction().rollback();
+            }
+            e.printStackTrace();
+            return false;
+        } finally {
+            session.close();
         }
-        return false;
     }
 
     public Habito getHabitoById(HabitoId id) {
         if (id == null || id.getIdUsuario() <= 0 || id.getIdActividad() <= 0) {
-            return null; // ID inválida
+            return null;
         }
-        Habito habito = habitoDAO.findById(id);
-        if (habito == null) {
-            return null; // Hábito no encontrado
-        }
-        List<Habito> existingHabitos = habitoDAO.findAll();
-        for (Habito existingHabito : existingHabitos) {
-            if (existingHabito.getId().equals(id) && !existingHabito.equals(habito)) {
-                return null; // ID duplicada encontrada
-            }
-        }
-        return habito;
+        return habitoDAO.findById(id);
     }
 
     public List<Habito> getAllHabitos() {
-        List<Habito> habitos = habitoDAO.findAll();
-        if (habitos == null || habitos.isEmpty()) {
-            return null; // No se encontraron hábitos
-        }
-        return habitos;
+        return habitoDAO.findAllWithActividad();
     }
 }
