@@ -61,7 +61,7 @@ public class RegistrarHuellaController extends Controller implements Initializab
 
     @Override
     public void onClose(Object output) {
-        // Lógica para cerrar la vista si es necesario
+
     }
 
     @FXML

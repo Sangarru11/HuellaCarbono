@@ -74,6 +74,15 @@ public class HabitoDAO implements DAO<Habito, HabitoId> {
         return habitos;
     }
 
+    public List<Habito> findAllWithActividad() {
+        Session ss = sF.openSession();
+        ss.beginTransaction();
+        List<Habito> habitos = ss.createQuery("SELECT h FROM Habito h JOIN FETCH h.idActividad", Habito.class).list();
+        ss.getTransaction().commit();
+        ss.close();
+        return habitos;
+    }
+
     @Override
     public void close() throws IOException {
         sF.close();
