@@ -83,4 +83,9 @@ public class MainPageHabitoController extends Controller implements Initializabl
         Usuario usuario = (Usuario) tableView.getUserData();
         WelcomePageController.changeScene(Scenes.RegistrarHabito, usuario.getId());
     }
+    @FXML
+    public void goTosHuellaHabito() throws IOException{
+        Usuario usuario = (Usuario) tableView.getUserData();
+        WelcomePageController.changeScene(Scenes.sHuellaHabito, usuario.getId());
+    }
 }

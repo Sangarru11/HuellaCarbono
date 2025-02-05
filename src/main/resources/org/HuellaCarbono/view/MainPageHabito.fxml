@@ -10,17 +10,18 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1075.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.HuellaCarbono.view.MainPageHabitoController" stylesheets="@css/MainPageHabito.css">
+<AnchorPane prefHeight="720.0" prefWidth="1075.0" style="-fx-background-color: #e0eaebe7;" stylesheets="@css/MainPageHabito.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.HuellaCarbono.view.MainPageHabitoController">
    <children>
-      <TableView fx:id="tableView" layoutX="248.0" layoutY="244.0" prefHeight="200.0" prefWidth="548.0">
+      <AnchorPane layoutX="155.0" layoutY="166.0" prefHeight="387.0" prefWidth="738.0" styleClass="rounded-pane" />
+      <TableView fx:id="tableView" layoutX="169.0" layoutY="181.0" prefHeight="357.0" prefWidth="712.0">
         <columns>
-          <TableColumn fx:id="Actividad" prefWidth="268.0" text="Actividad" />
-          <TableColumn fx:id="Frecuencia" minWidth="0.0" prefWidth="74.66668701171875" text="Frecuencia" />
-            <TableColumn fx:id="Tipo" prefWidth="98.66668701171875" text="Tipo" />
-            <TableColumn fx:id="Fecha" prefWidth="108.66668701171875" text="Fecha" />
+          <TableColumn fx:id="Actividad" prefWidth="296.00001525878906" text="Actividad" />
+          <TableColumn fx:id="Frecuencia" minWidth="0.0" prefWidth="94.66659545898438" text="Frecuencia" />
+            <TableColumn fx:id="Tipo" prefWidth="144.0" text="Tipo" />
+            <TableColumn fx:id="Fecha" prefWidth="178.00006103515625" text="Fecha" />
         </columns>
       </TableView>
-      <HBox alignment="CENTER" layoutX="877.0" layoutY="32.0" onMouseClicked="#goToRegistrarHabito" prefHeight="62.0" prefWidth="169.0" styleClass="rounded-pane">
+      <HBox alignment="CENTER" layoutX="881.0" layoutY="21.0" onMouseClicked="#goToRegistrarHabito" prefHeight="62.0" prefWidth="169.0" styleClass="rounded-pane">
          <children>
             <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Registrar Habito" wrappingWidth="98.32339477539062">
                <font>
@@ -36,6 +37,33 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
+      </HBox>
+      <HBox layoutX="-13.0" layoutY="-17.0" prefHeight="100.0" prefWidth="200.0" styleClass="rounder-border" />
+      <HBox alignment="CENTER" prefHeight="62.0" prefWidth="169.0">
+         <children>
+            <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/HuellaCarbonoLogo.PNG" />
+               </image>
+            </ImageView>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Habito">
+               <font>
+                  <Font name="Georgia" size="28.0" />
+               </font>
+            </Text>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="976.0" layoutY="623.0" onMouseClicked="#goTosHuellaHabito" prefHeight="70.0" prefWidth="70.0" styleClass="rounder-border">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <children>
+            <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/Return.png" />
+               </image>
+            </ImageView>
+         </children>
       </HBox>
    </children>
 </AnchorPane>

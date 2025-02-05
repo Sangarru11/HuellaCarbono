@@ -1,0 +1,5 @@
+.rounded-pane {
+    -fx-background-color: #0d8eb9;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+}

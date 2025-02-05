@@ -3,3 +3,20 @@
     -fx-background-radius: 20;
     -fx-border-radius: 20;
 }
+.rounder-border{
+    -fx-background-color: #5fbcdc;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+}
+
+.table-view .column-header {
+    -fx-background-color: #4a9fcf; /* A slightly different blue to make it stand out */
+    -fx-text-fill: #ffffff;
+    -fx-font-family: "Georgia"; /* White text color for better contrast */
+}
+
+.table-colum-color {
+    -fx-text-fill: #21313d;
+    -fx-font-family: "Georgia";
+    /* A dark blue color for the text */
+}

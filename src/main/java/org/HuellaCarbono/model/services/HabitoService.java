@@ -10,21 +10,20 @@ import org.hibernate.cfg.Configuration;
 
 import java.util.List;
 
+import static org.HuellaCarbono.model.DAO.DAO.sF;
+
 public class HabitoService {
     private HabitoDAO habitoDAO;
-    private SessionFactory sessionFactory;
 
     public HabitoService() {
         this.habitoDAO = new HabitoDAO();
-        this.sessionFactory = new Configuration().configure().buildSessionFactory();
     }
 
     public boolean saveHabito(Habito habito) {
-        Session session = sessionFactory.openSession();
+        Session session = sF.openSession();
         try {
             session.beginTransaction();
 
-            // Fusionar la entidad Actividad para asegurarse de que esté gestionada por la sesión actual
             Actividad managedActividad = (Actividad) session.merge(habito.getIdActividad());
             habito.setIdActividad(managedActividad);
 

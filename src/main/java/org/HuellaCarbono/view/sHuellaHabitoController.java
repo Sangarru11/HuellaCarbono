@@ -9,30 +9,11 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class sHuellaHabitoController extends Controller implements Initializable {
-    @FXML
-    private ImageView huellaImageView;
-    @FXML
-    private ImageView habitoImageView;
-
     private Integer userId;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        huellaImageView.setOnMouseClicked(event -> {
-            try {
-                MainController.changeScene(Scenes.MainPage, userId);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
 
-        habitoImageView.setOnMouseClicked(event -> {
-            try {
-                MainController.changeScene(Scenes.MainPageHabito, userId);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
     }
 
     @Override
@@ -46,5 +27,17 @@ public class sHuellaHabitoController extends Controller implements Initializable
     @Override
     public void onClose(Object output) {
         // Logic to close the view if necessary
+    }
+    @FXML
+    public void goToWelcome() throws IOException {
+        WelcomePageController.changeScene(Scenes.WelcomePage, null);
+    }
+    @FXML
+    public void setHuellaImageView() throws IOException {
+        MainController.changeScene(Scenes.MainPage, userId);
+    }
+    @FXML
+    public void setHabitoImageView() throws IOException {
+        MainController.changeScene(Scenes.MainPageHabito, userId);
     }
 }

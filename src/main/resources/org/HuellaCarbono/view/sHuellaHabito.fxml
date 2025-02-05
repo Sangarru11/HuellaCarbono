@@ -4,24 +4,71 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="617.0" prefWidth="600.0" style="-fx-background-color: #26b99e;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.HuellaCarbono.view.sHuellaHabitoController">
+<AnchorPane prefHeight="617.0" prefWidth="600.0" style="-fx-background-color: #e0eaebe7;" stylesheets="@css/sHuellaHabito.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.HuellaCarbono.view.sHuellaHabitoController">
    <children>
-      <ImageView fx:id="huellaImageView" fitHeight="150.0" fitWidth="200.0" layoutX="96.0" layoutY="234.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@images/huella.png" />
-         </image>
+      <HBox alignment="CENTER" layoutX="105.0" layoutY="242.0" onMouseClicked="#setHuellaImageView" prefHeight="120.0" prefWidth="120.0" styleClass="rounded-pane">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
-      </ImageView>
-      <ImageView fx:id="habitoImageView" fitHeight="150.0" fitWidth="200.0" layoutX="367.0" layoutY="234.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@images/Habito.png" />
-         </image>
+         <children>
+            <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/huella.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="386.0" layoutY="242.0" onMouseClicked="#setHabitoImageView" prefHeight="120.0" prefWidth="120.0" styleClass="rounded-pane">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
-      </ImageView>
+         <children>
+            <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/Habito.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="473.0" layoutY="494.0" onMouseClicked="#goToWelcome" prefHeight="80.0" prefWidth="80.0" styleClass="rounded-pane">
+         <children>
+            <ImageView fitHeight="58.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/Return.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </children>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </HBox>
+      <Text layoutX="105.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Seleccione Su Actividad">
+         <font>
+            <Font name="Georgia Bold" size="33.0" />
+         </font>
+      </Text>
+      <Text layoutX="120.0" layoutY="227.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Huella">
+         <font>
+            <Font name="Georgia Bold" size="26.0" />
+         </font>
+      </Text>
+      <Text layoutX="400.0" layoutY="227.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Habito">
+         <font>
+            <Font name="Georgia Bold" size="26.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

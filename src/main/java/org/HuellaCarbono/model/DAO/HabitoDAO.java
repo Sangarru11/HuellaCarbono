@@ -3,6 +3,7 @@ package org.HuellaCarbono.model.DAO;
 import org.HuellaCarbono.model.entity.Habito;
 import org.HuellaCarbono.model.entity.HabitoId;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -21,12 +22,24 @@ public class HabitoDAO implements DAO<Habito, HabitoId> {
 
     @Override
     public boolean insert(Habito entity) {
-        Session ss = sF.openSession();
-        ss.beginTransaction();
-        ss.persist(entity);
-        ss.getTransaction().commit();
-        ss.close();
-        return true;
+        Session sn = sF.openSession();
+        Transaction tx = sn.beginTransaction();
+        try {
+            if (entity.getIdActividad() != null) {
+                entity.setIdActividad(sn.merge(entity.getIdActividad()));
+            }
+            if (entity.getIdUsuario() != null) {
+                entity.setIdUsuario(sn.merge(entity.getIdUsuario()));
+            }
+            sn.persist(entity);
+            tx.commit();
+            return true;
+        } catch (Exception e) {
+            if (tx != null) tx.rollback();
+            throw e;
+        } finally {
+            sn.close();
+        }
     }
 
     @Override
