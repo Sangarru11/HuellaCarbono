@@ -3,3 +3,8 @@
     -fx-background-radius: 20;
     -fx-border-radius: 20;
 }
+.rounder-border{
+    -fx-background-color: #5fbcdc;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+}

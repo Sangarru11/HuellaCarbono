@@ -12,14 +12,15 @@
 
 <AnchorPane prefHeight="720.0" prefWidth="1075.0" style="-fx-background-color: #e0eaebe7;" stylesheets="@css/MainPage.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.HuellaCarbono.view.MainPageController">
    <children>
-      <HBox layoutX="-8.0" layoutY="-16.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #5fbcdc;" />
+      <AnchorPane layoutX="168.0" layoutY="166.0" prefHeight="387.0" prefWidth="738.0" styleClass="rounded-pane" />
+      <HBox layoutX="-12.0" layoutY="-16.0" prefHeight="100.0" prefWidth="200.0" styleClass="rounder-border" />
       <TableView fx:id="tableView" layoutX="182.0" layoutY="181.0" prefHeight="357.0" prefWidth="712.0">
         <columns>
-          <TableColumn fx:id="Actividad" prefWidth="267.9999694824219" text="Actividad" />
-          <TableColumn fx:id="Cantidad" prefWidth="90.0" text="Cantidad" />
-            <TableColumn fx:id="Unidad" prefWidth="112.6666259765625" text="Unidad" />
-            <TableColumn fx:id="Fecha" prefWidth="116.66668701171875" text="Fecha" />
-            <TableColumn fx:id="ImpactoHC" prefWidth="126.0" text="Impacto HC" />
+          <TableColumn fx:id="Actividad" prefWidth="267.9999694824219" styleClass="table-colum-color" text="Actividad" />
+          <TableColumn fx:id="Cantidad" prefWidth="90.0" styleClass="table-colum-color" text="Cantidad" />
+            <TableColumn fx:id="Unidad" prefWidth="112.6666259765625" styleClass="table-colum-color" text="Unidad" />
+            <TableColumn fx:id="Fecha" prefWidth="116.66668701171875" styleClass="table-colum-color" text="Fecha" />
+            <TableColumn fx:id="ImpactoHC" prefWidth="120.6666259765625" styleClass="table-colum-color" text="Impacto HC" />
         </columns>
       </TableView>
       <HBox alignment="CENTER" layoutX="867.0" layoutY="22.0" onMouseClicked="#goToRegistrarHuella" prefHeight="62.0" prefWidth="169.0" styleClass="rounded-pane">
@@ -51,6 +52,18 @@
                   <Font name="Georgia" size="28.0" />
                </font>
             </Text>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="966.0" layoutY="613.0" onMouseClicked="#goTosHuellaHabito" prefHeight="70.0" prefWidth="70.0" styleClass="rounder-border">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <children>
+            <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/Return.png" />
+               </image>
+            </ImageView>
          </children>
       </HBox>
    </children>

@@ -2,6 +2,7 @@ package org.HuellaCarbono.view;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
@@ -12,7 +13,6 @@ import org.HuellaCarbono.model.entity.Usuario;
 import org.HuellaCarbono.model.services.ActividadService;
 import org.HuellaCarbono.model.services.HabitoService;
 import org.HuellaCarbono.model.services.UsuarioService;
-import org.hibernate.Session;
 
 import java.io.IOException;
 import java.net.URL;
@@ -61,8 +61,51 @@ public class RegistrarHabitoController extends Controller implements Initializab
     }
 
     @FXML
-    public void registrarHabito() {
+    public void registrarHabito() throws IOException {
+        Actividad actividad = actividadComboBox.getValue();
+        String freq = frecuencia.getText();
+        String tipoHabito = tipo.getText();
+        LocalDate date = fecha.getValue();
+        Usuario usuario = usuarioService.getUsuarioById(this.userId);
 
+        if (actividad == null || usuario == null || date == null || freq.isEmpty() || tipoHabito.isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Datos faltantes");
+            alert.setContentText("Por favor, complete todos los campos.");
+            alert.showAndWait();
+        } else {
+            HabitoId habitoId = new HabitoId();
+            habitoId.setIdUsuario(usuario.getId());
+            habitoId.setIdActividad(actividad.getId());
+
+            Habito existingHabito = habitoService.getHabitoById(habitoId);
+            if (existingHabito != null) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("Hábito duplicado");
+                alert.setContentText("Este hábito ya está registrado.");
+                alert.showAndWait();
+            } else {
+                Habito habito = new Habito();
+                habito.setIdUsuario(usuario);
+                habito.setIdActividad(actividad);
+                habito.setFecuencia(freq);
+                habito.setTipo(tipoHabito);
+                habito.setUltimaFecha(date);
+                habito.setId(habitoId);
+
+                habitoService.saveHabito(habito);
+
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Éxito");
+                alert.setHeaderText("Hábito registrado");
+                alert.setContentText("El hábito ha sido registrado exitosamente.");
+                alert.showAndWait();
+
+                goToMainPageHabito();
+            }
+        }
     }
 
     @FXML
