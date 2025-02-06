@@ -56,7 +56,7 @@
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor></TextField>
-            <Text fx:id="unidad" fill="WHITE" layoutX="346.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="53.3333740234375">
+            <Text fx:id="unidad" fill="WHITE" layoutX="346.0" layoutY="258.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="53.3333740234375">
                <font>
                   <Font name="Georgia" size="18.0" />
                </font>

@@ -54,6 +54,10 @@ public class CategoriaDAO implements DAO<Categoria, String> {
         Session ss = sF.openSession();
         ss.beginTransaction();
         Categoria categoria = ss.get(Categoria.class, id);
+        if (categoria != null) {
+            categoria.getActividads().size();
+            categoria.getRecomendacions().size();
+        }
         ss.getTransaction().commit();
         ss.close();
         return categoria;
@@ -69,6 +73,10 @@ public class CategoriaDAO implements DAO<Categoria, String> {
         Session ss = sF.openSession();
         ss.beginTransaction();
         List<Categoria> categorias = ss.createQuery("from Categoria", Categoria.class).list();
+        categorias.forEach(categoria -> {
+            categoria.getActividads().size();
+            categoria.getRecomendacions().size();
+        });
         ss.getTransaction().commit();
         ss.close();
         return categorias;

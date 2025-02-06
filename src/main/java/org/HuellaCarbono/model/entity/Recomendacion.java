@@ -18,11 +18,12 @@ public class Recomendacion {
     @Column(name = "impacto_estimado", length = 50)
     private String impactoEstimado;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name = "id_categoria")
+    @JoinColumn(name = "id_categoria", nullable = false)
     private Categoria idCategoria;
 
+    // Getters and setters
     public Integer getId() {
         return id;
     }
@@ -54,5 +55,4 @@ public class Recomendacion {
     public void setIdCategoria(Categoria idCategoria) {
         this.idCategoria = idCategoria;
     }
-
 }

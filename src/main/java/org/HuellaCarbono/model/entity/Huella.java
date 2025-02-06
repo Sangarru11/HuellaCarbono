@@ -80,5 +80,4 @@ public class Huella {
     public void setIdActividad(Actividad idActividad) {
         this.idActividad = idActividad;
     }
-
 }

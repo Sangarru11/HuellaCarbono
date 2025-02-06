@@ -9,6 +9,7 @@ import javafx.scene.control.TextField;
 import org.HuellaCarbono.App;
 import org.HuellaCarbono.model.entity.Usuario;
 import org.HuellaCarbono.model.services.UsuarioService;
+import org.HuellaCarbono.utils.HashPassword;
 
 import java.io.IOException;
 import java.net.URL;
@@ -56,7 +57,8 @@ public class WelcomePageController extends Controller implements Initializable {
         Usuario user = usuarioService.getUsuarioByUsername(username);
 
         if (user != null) {
-            if (password.equals(user.getContrasena())) {
+            String hashedPassword = HashPassword.hash(password);
+            if (hashedPassword.equals(user.getContrasena())) {
                 changeScene(Scenes.sHuellaHabito, user.getId());
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);

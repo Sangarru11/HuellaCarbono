@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 import org.HuellaCarbono.App;
 import org.HuellaCarbono.model.entity.Usuario;
 import org.HuellaCarbono.model.services.UsuarioService;
+import org.HuellaCarbono.utils.HashPassword;
 
 import java.io.IOException;
 import java.net.URL;
@@ -63,9 +64,10 @@ public class RegisterPageController extends Controller implements Initializable 
             alert.setContentText("El usuario ya existe.");
             alert.show();
         } else {
+            String hashedPassword = HashPassword.hash(password);
             Usuario newUser = new Usuario();
             newUser.setNombre(username);
-            newUser.setContrasena(password);
+            newUser.setContrasena(hashedPassword);
             newUser.setEmail(email);
             newUser.setFechaRegistro(LocalDate.now());
             usuarioService.saveUsuario(newUser);

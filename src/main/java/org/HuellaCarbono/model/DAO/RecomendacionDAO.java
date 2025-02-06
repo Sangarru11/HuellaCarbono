@@ -55,6 +55,9 @@ public class RecomendacionDAO implements DAO<Recomendacion, String> {
         Session ss = sF.openSession();
         ss.beginTransaction();
         Recomendacion recomendacion = ss.get(Recomendacion.class, id);
+        if (recomendacion != null) {
+            recomendacion.getIdCategoria().getNombre();
+        }
         ss.getTransaction().commit();
         ss.close();
         return recomendacion;
@@ -70,6 +73,9 @@ public class RecomendacionDAO implements DAO<Recomendacion, String> {
         Session ss = sF.openSession();
         ss.beginTransaction();
         List<Recomendacion> recomendaciones = ss.createQuery("from Recomendacion", Recomendacion.class).list();
+        recomendaciones.forEach(recomendacion -> {
+            recomendacion.getIdCategoria().getNombre();
+        });
         ss.getTransaction().commit();
         ss.close();
         return recomendaciones;
@@ -79,6 +85,7 @@ public class RecomendacionDAO implements DAO<Recomendacion, String> {
     public void close() throws IOException {
         sF.close();
     }
+
     public static RecomendacionDAO build() {
         return new RecomendacionDAO();
     }
