@@ -20,7 +20,7 @@ public class Usuario {
     @Column(name = "email", length = 50)
     private String email;
 
-    @Column(name = "contrasena", length = 50)
+    @Column(name = "contrasena", length = 64)
     private String contrasena;
 
     @Column(name = "fecha_registro")

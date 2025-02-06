@@ -48,11 +48,11 @@
                <font>
                   <Font name="Georgia Bold" size="21.0" />
                </font></Text>
-            <DatePicker fx:id="fecha" layoutX="163.0" layoutY="382.0">
+            <DatePicker fx:id="fecha" layoutX="163.0" layoutY="382.0" prefHeight="25.0" prefWidth="175.0">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></DatePicker>
-            <TextField fx:id="frecuencia" layoutX="161.0" layoutY="228.0" prefHeight="25.0" prefWidth="175.0">
+            <TextField fx:id="frecuencia" layoutX="163.0" layoutY="229.0" prefHeight="25.0" prefWidth="175.0">
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor></TextField>
@@ -81,11 +81,7 @@
                   <Font name="Georgia Bold" size="21.0" />
                </font>
             </Text>
-            <TextField fx:id="tipo" layoutX="163.0" layoutY="312.0" prefHeight="25.0" prefWidth="175.0">
-               <cursor>
-                  <Cursor fx:constant="TEXT" />
-               </cursor>
-            </TextField>
+            <ComboBox fx:id="tipo" layoutX="160.0" layoutY="312.0" prefHeight="25.0" prefWidth="175.0" />
          </children>
       </AnchorPane>
    </children>

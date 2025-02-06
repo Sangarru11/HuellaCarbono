@@ -31,7 +31,7 @@ public class RegistrarHabitoController extends Controller implements Initializab
     @FXML
     private TextField frecuencia;
     @FXML
-    private TextField tipo;
+    private ComboBox<String> tipo;
     @FXML
     private DatePicker fecha;
 
@@ -45,6 +45,8 @@ public class RegistrarHabitoController extends Controller implements Initializab
     public void initialize(URL url, ResourceBundle resourceBundle) {
         List<Actividad> actividades = actividadService.getAllActividades();
         actividadComboBox.getItems().setAll(actividades);
+
+        tipo.getItems().addAll("Semanal", "Diaria", "Anuel");
     }
 
     @Override
@@ -64,7 +66,7 @@ public class RegistrarHabitoController extends Controller implements Initializab
     public void registrarHabito() throws IOException {
         Actividad actividad = actividadComboBox.getValue();
         String freq = frecuencia.getText();
-        String tipoHabito = tipo.getText();
+        String tipoHabito = tipo.getValue();
         LocalDate date = fecha.getValue();
         Usuario usuario = usuarioService.getUsuarioById(this.userId);
 

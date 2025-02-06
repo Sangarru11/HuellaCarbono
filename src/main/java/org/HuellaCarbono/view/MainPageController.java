@@ -8,10 +8,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import org.HuellaCarbono.model.entity.Actividad;
-import org.HuellaCarbono.model.entity.Huella;
-import org.HuellaCarbono.model.entity.Usuario;
+import org.HuellaCarbono.model.entity.*;
+import org.HuellaCarbono.model.services.CategoriaService;
 import org.HuellaCarbono.model.services.HuellaService;
+import org.HuellaCarbono.model.services.RecomendacionService;
 import org.HuellaCarbono.model.services.UsuarioService;
 
 import java.io.IOException;
@@ -39,9 +39,20 @@ public class MainPageController extends Controller implements Initializable {
     private UsuarioService usuarioService;
     private HuellaService huellaService;
 
+    @FXML
+    private TableView<Recomendacion> tableViewRecomendacion;
+    @FXML
+    private TableColumn<Recomendacion, String> Descripcion;
+    @FXML
+    private TableColumn<Recomendacion, String> Impacto;
+
+    private ObservableList<Recomendacion> recomendacionObservableList;
+    private RecomendacionService recomendacionService;
+
     public MainPageController() {
         this.usuarioService = new UsuarioService();
         this.huellaService = new HuellaService();
+        this.recomendacionService = new RecomendacionService();
     }
 
     @Override
@@ -69,6 +80,8 @@ public class MainPageController extends Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        this.huellaObservableList = FXCollections.observableArrayList();
+
         Actividad.setCellValueFactory(cellData -> {
             Actividad actividad = cellData.getValue().getIdActividad();
             return new SimpleStringProperty(actividad != null ? actividad.getNombre() : "");
@@ -85,6 +98,32 @@ public class MainPageController extends Controller implements Initializable {
             double impactoHC = huella.getValor() * Double.parseDouble(actividad.getIdCategoria().getFactorEmision());
             return new SimpleStringProperty(String.valueOf(impactoHC));
         });
+
+        List<Huella> huellaList = huellaService.getAllHuellas();
+        huellaList.forEach(huella -> {
+            huella.getIdActividad().getIdCategoria().getId();
+        });
+        this.huellaObservableList.setAll(huellaList);
+        tableView.setItems(this.huellaObservableList);
+
+        List<Integer> categoriasPresentes = huellaObservableList.stream()
+                .map(huella -> huella.getIdActividad().getIdCategoria().getId())
+                .distinct()
+                .collect(Collectors.toList());
+
+        CategoriaService categoriaService = new CategoriaService();
+        List<Categoria> categorias = categoriaService.getAllCategorias();
+        List<Recomendacion> recomendacionesFiltradas = recomendacionService.getRecomendacionesByCategoriaIds(
+                categorias.stream()
+                        .filter(categoria -> categoriasPresentes.contains(categoria.getId()))
+                        .map(Categoria::getId)
+                        .collect(Collectors.toList())
+        );
+
+        Descripcion.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDescripcion()));
+        Impacto.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getImpactoEstimado()));
+        this.recomendacionObservableList = FXCollections.observableArrayList(recomendacionesFiltradas);
+        tableViewRecomendacion.setItems(this.recomendacionObservableList);
     }
 
     @FXML

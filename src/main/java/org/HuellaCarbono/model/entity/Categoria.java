@@ -1,8 +1,6 @@
 package org.HuellaCarbono.model.entity;
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.ColumnDefault;
-
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -14,23 +12,22 @@ public class Categoria {
     @Column(name = "id_categoria", nullable = false)
     private Integer id;
 
-    @ColumnDefault("'0'")
     @Column(name = "nombre", nullable = false, length = 50)
     private String nombre;
 
-    @ColumnDefault("'0'")
     @Column(name = "factor_emision", nullable = false, length = 50)
     private String factorEmision;
 
     @Column(name = "unidad", length = 50)
     private String unidad;
 
-    @OneToMany(mappedBy = "idCategoria")
+    @OneToMany(mappedBy = "idCategoria", fetch = FetchType.LAZY)
     private Set<Actividad> actividads = new LinkedHashSet<>();
 
-    @OneToMany(mappedBy = "idCategoria")
-    private Set<org.HuellaCarbono.model.entity.Recomendacion> recomendacions = new LinkedHashSet<>();
+    @OneToMany(mappedBy = "idCategoria", fetch = FetchType.LAZY)
+    private Set<Recomendacion> recomendacions = new LinkedHashSet<>();
 
+    // Getters and setters
     public Integer getId() {
         return id;
     }
@@ -71,12 +68,11 @@ public class Categoria {
         this.actividads = actividads;
     }
 
-    public Set<org.HuellaCarbono.model.entity.Recomendacion> getRecomendacions() {
+    public Set<Recomendacion> getRecomendacions() {
         return recomendacions;
     }
 
-    public void setRecomendacions(Set<org.HuellaCarbono.model.entity.Recomendacion> recomendacions) {
+    public void setRecomendacions(Set<Recomendacion> recomendacions) {
         this.recomendacions = recomendacions;
     }
-
 }

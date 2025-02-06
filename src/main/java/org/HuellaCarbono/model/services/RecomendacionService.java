@@ -4,6 +4,7 @@ import org.HuellaCarbono.model.DAO.RecomendacionDAO;
 import org.HuellaCarbono.model.entity.Recomendacion;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class RecomendacionService {
     private RecomendacionDAO recomendacionDAO;
@@ -13,41 +14,32 @@ public class RecomendacionService {
     }
 
     public boolean saveRecomendacion(Recomendacion recomendacion) {
-        if (recomendacionDAO.findById(recomendacion.getId()) == null) {
-            List<Recomendacion> existingRecomendaciones = recomendacionDAO.findAll();
-            for (Recomendacion existingRecomendacion : existingRecomendaciones) {
-                if (existingRecomendacion.getDescripcion().equals(recomendacion.getDescripcion()) &&
-                    existingRecomendacion.getIdCategoria().equals(recomendacion.getIdCategoria())) {
-                    return false;
-                }
-            }
+        if (recomendacion.getId() == null) {
             return recomendacionDAO.insert(recomendacion);
+        } else {
+            Recomendacion existingRecomendacion = recomendacionDAO.findById(recomendacion.getId());
+            if (existingRecomendacion == null) {
+                return recomendacionDAO.insert(recomendacion);
+            } else {
+                return recomendacionDAO.update(recomendacion);
+            }
         }
-        return false;
     }
 
     public Recomendacion getRecomendacionById(Integer id) {
         if (id == null || id <= 0) {
             return null;
         }
-        Recomendacion recomendacion = recomendacionDAO.findById(id);
-        if (recomendacion == null) {
-            return null;
-        }
-        List<Recomendacion> existingRecomendaciones = recomendacionDAO.findAll();
-        for (Recomendacion existingRecomendacion : existingRecomendaciones) {
-            if (existingRecomendacion.getId().equals(id) && !existingRecomendacion.equals(recomendacion)) {
-                return null;
-            }
-        }
-        return recomendacion;
+        return recomendacionDAO.findById(id);
     }
 
     public List<Recomendacion> getAllRecomendaciones() {
-        List<Recomendacion> recomendaciones = recomendacionDAO.findAll();
-        if (recomendaciones == null || recomendaciones.isEmpty()) {
-            return null;
-        }
-        return recomendaciones;
+        return recomendacionDAO.findAll();
+    }
+
+    public List<Recomendacion> getRecomendacionesByCategoriaIds(List<Integer> categoriaIds) {
+        return getAllRecomendaciones().stream()
+                .filter(recomendacion -> categoriaIds.contains(recomendacion.getIdCategoria().getId()))
+                .collect(Collectors.toList());
     }
 }

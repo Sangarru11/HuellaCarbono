@@ -65,20 +65,36 @@ public class RegistrarHuellaController extends Controller implements Initializab
     }
 
     @FXML
-    public void registrarHuella() {
+    public void registrarHuella() throws IOException {
         Actividad actividad = actividadComboBox.getValue();
         String valor = cantidad.getText();
         String date = fecha.getValue().toString();
         Usuario usuario = usuarioService.getUsuarioById(this.userId);
 
-        Huella huella = new Huella();
-        huella.setIdActividad(actividad);
-        huella.setValor(Integer.valueOf(valor));
-        huella.setUnidad(unidad.getText());
-        huella.setIdUsuario(usuario);
-        huella.setFecha(LocalDate.parse(date));
+        if (actividad == null || valor.isEmpty() || date.isEmpty() || usuario == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Campos incompletos");
+            alert.setContentText("Por favor, complete todos los campos.");
+            alert.showAndWait();
+        } else {
+            Huella huella = new Huella();
+            huella.setIdActividad(actividad);
+            huella.setValor(Integer.valueOf(valor));
+            huella.setUnidad(unidad.getText());
+            huella.setIdUsuario(usuario);
+            huella.setFecha(LocalDate.parse(date));
 
-        huellaService.saveHuella(huella);
+            huellaService.saveHuella(huella);
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Éxito");
+            alert.setHeaderText("Huella registrada");
+            alert.setContentText("La huella ha sido registrada exitosamente.");
+            alert.showAndWait();
+
+            returnToMain();
+        }
     }
 
     @FXML
