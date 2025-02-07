@@ -40,4 +40,8 @@ public class sHuellaHabitoController extends Controller implements Initializable
     public void setHabitoImageView() throws IOException {
         MainController.changeScene(Scenes.MainPageHabito, userId);
     }
+    @FXML
+    public void setComparativaImageView() throws IOException {
+        MainController.changeScene(Scenes.Comparativa, userId);
+    }
 }

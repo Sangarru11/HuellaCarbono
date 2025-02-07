@@ -6,6 +6,8 @@ module org.HuellaCarbono {
     requires org.hibernate.orm.core;
     requires java.desktop;
     requires jdk.compiler;
+    requires com.opencsv;
+    requires org.apache.pdfbox;
 
     opens org.HuellaCarbono to javafx.fxml;
     opens org.HuellaCarbono.model.entity to org.hibernate.orm.core;
