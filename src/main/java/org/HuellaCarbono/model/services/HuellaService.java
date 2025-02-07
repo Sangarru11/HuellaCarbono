@@ -35,4 +35,8 @@ public class HuellaService {
     public List<Huella> getAllHuellas() {
         return huellaDAO.findAll();
     }
+
+    public List<Huella> getHuellasByUserId(Integer userId) {
+        return huellaDAO.findByUserId(userId);
+    }
 }

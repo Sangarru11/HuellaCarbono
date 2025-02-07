@@ -3,6 +3,7 @@ package org.HuellaCarbono.model.DAO;
 import org.HuellaCarbono.model.entity.Categoria;
 import org.HuellaCarbono.model.entity.Habito;
 import org.HuellaCarbono.model.entity.HabitoId;
+import org.HuellaCarbono.model.entity.Usuario;
 import org.hibernate.Session;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -82,10 +83,22 @@ public class CategoriaDAO implements DAO<Categoria, String> {
         return categorias;
     }
 
+    public List<Categoria> findByNames(String... names) {
+        Session ss = sF.openSession();
+        ss.beginTransaction();
+        List<Categoria> categorias = ss.createQuery("from Categoria c where c.nombre in :names", Categoria.class)
+                .setParameterList("names", names)
+                .list();
+        ss.getTransaction().commit();
+        ss.close();
+        return categorias;
+    }
+
     @Override
     public void close() throws IOException {
         sF.close();
     }
+
     public static CategoriaDAO build() {
         return new CategoriaDAO();
     }

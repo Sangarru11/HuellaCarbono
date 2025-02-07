@@ -45,7 +45,7 @@
             </Text>
          </children>
       </HBox>
-      <HBox alignment="CENTER" layoutX="1001.0" layoutY="646.0" onMouseClicked="#goTosHuellaHabito" prefHeight="60.0" prefWidth="60.0" styleClass="rounder-border">
+      <HBox alignment="CENTER" layoutX="1001.0" layoutY="646.0" onMouseClicked="#goTosHuellaHabito" prefHeight="60.0" prefWidth="60.0" styleClass="rounded-pane">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -103,6 +103,40 @@
                </font>
             </Text>
          </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="18.0" layoutY="645.0" onMouseClicked="#GeneratePdfRecords" prefHeight="62.0" prefWidth="169.0" styleClass="rounded-pane">
+         <children>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Generar Reportes" wrappingWidth="98.32339477539062">
+               <font>
+                  <Font name="Georgia Bold" size="19.0" />
+               </font>
+            </Text>
+            <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/GeneratePDF.png" />
+               </image>
+            </ImageView>
+         </children>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="219.0" layoutY="645.0" onMouseClicked="#GenerateCsvRecords" prefHeight="62.0" prefWidth="169.0" styleClass="rounded-pane">
+         <children>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Generar Reportes" wrappingWidth="98.32339477539062">
+               <font>
+                  <Font name="Georgia Bold" size="19.0" />
+               </font>
+            </Text>
+            <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/Generatecsv.png" />
+               </image>
+            </ImageView>
+         </children>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </HBox>
    </children>
 </AnchorPane>

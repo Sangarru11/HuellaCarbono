@@ -2,6 +2,7 @@ package org.HuellaCarbono.model.services;
 
 import org.HuellaCarbono.model.DAO.CategoriaDAO;
 import org.HuellaCarbono.model.entity.Categoria;
+import org.HuellaCarbono.model.entity.Usuario;
 
 import java.util.List;
 
@@ -41,5 +42,9 @@ public class CategoriaService {
 
     public List<Categoria> getAllCategorias() {
         return categoriaDAO.findAll();
+    }
+
+    public List<Categoria> getCategoriasByNames(String... names) {
+        return categoriaDAO.findByNames(names);
     }
 }

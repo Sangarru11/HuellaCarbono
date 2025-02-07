@@ -92,6 +92,7 @@ public class MainPageHabitoController extends Controller implements Initializabl
         Impacto.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getImpactoEstimado()));
         this.recomendacionObservableList = FXCollections.observableArrayList(recomendacionesFiltradas);
         tableViewRecomendacion.setItems(this.recomendacionObservableList);
+        updateRecommendations();
     }
 
     @Override
@@ -107,9 +108,24 @@ public class MainPageHabitoController extends Controller implements Initializabl
                         .collect(Collectors.toList());
                 this.habitoObservableList = FXCollections.observableArrayList(habitoList);
                 tableView.setItems(this.habitoObservableList);
+                updateRecommendations();
             }
         }
         return input;
+    }
+
+    private void updateRecommendations() {
+        List<Integer> categoriasPresentes = habitoObservableList.stream()
+                .map(habito -> habito.getIdActividad().getIdCategoria().getId())
+                .distinct()
+                .collect(Collectors.toList());
+
+        List<Recomendacion> recomendacionesFiltradas = recomendacionService.getRecomendacionesByCategoriaIds(
+                categoriasPresentes
+        );
+
+        this.recomendacionObservableList.setAll(recomendacionesFiltradas);
+        tableViewRecomendacion.setItems(this.recomendacionObservableList);
     }
 
     @Override

@@ -30,7 +30,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </HBox>
-      <HBox layoutX="-13.0" layoutY="-17.0" prefHeight="100.0" prefWidth="200.0" styleClass="rounder-border" />
+      <HBox layoutX="-13.0" layoutY="-17.0" prefHeight="100.0" prefWidth="200.0" styleClass="rounded-pane" />
       <HBox alignment="CENTER" prefHeight="62.0" prefWidth="169.0">
          <children>
             <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
@@ -45,7 +45,7 @@
             </Text>
          </children>
       </HBox>
-      <HBox alignment="CENTER" layoutX="990.0" layoutY="646.0" onMouseClicked="#goTosHuellaHabito" prefHeight="60.0" prefWidth="60.0" styleClass="rounder-border">
+      <HBox alignment="CENTER" layoutX="990.0" layoutY="646.0" onMouseClicked="#goTosHuellaHabito" prefHeight="60.0" prefWidth="60.0" styleClass="rounded-pane">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

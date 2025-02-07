@@ -10,7 +10,7 @@
 
 <AnchorPane prefHeight="617.0" prefWidth="600.0" style="-fx-background-color: #e0eaebe7;" stylesheets="@css/sHuellaHabito.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.HuellaCarbono.view.sHuellaHabitoController">
    <children>
-      <HBox alignment="CENTER" layoutX="105.0" layoutY="242.0" onMouseClicked="#setHuellaImageView" prefHeight="120.0" prefWidth="120.0" styleClass="rounded-pane">
+      <HBox alignment="CENTER" layoutX="105.0" layoutY="189.0" onMouseClicked="#setHuellaImageView" prefHeight="120.0" prefWidth="120.0" styleClass="rounded-pane">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -25,7 +25,7 @@
             </ImageView>
          </children>
       </HBox>
-      <HBox alignment="CENTER" layoutX="386.0" layoutY="242.0" onMouseClicked="#setHabitoImageView" prefHeight="120.0" prefWidth="120.0" styleClass="rounded-pane">
+      <HBox alignment="CENTER" layoutX="386.0" layoutY="189.0" onMouseClicked="#setHabitoImageView" prefHeight="120.0" prefWidth="120.0" styleClass="rounded-pane">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -40,9 +40,9 @@
             </ImageView>
          </children>
       </HBox>
-      <HBox alignment="CENTER" layoutX="260.0" layoutY="481.0" onMouseClicked="#goToWelcome" prefHeight="80.0" prefWidth="80.0" styleClass="rounded-pane">
+      <HBox alignment="CENTER" layoutX="526.0" layoutY="543.0" onMouseClicked="#goToWelcome" prefHeight="60.0" prefWidth="60.0" styleClass="rounded-pane">
          <children>
-            <ImageView fitHeight="58.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/Return.png" />
                </image>
@@ -55,17 +55,37 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </HBox>
-      <Text layoutX="105.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Seleccione Su Actividad">
+      <Text layoutX="99.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Seleccione Su Actividad">
          <font>
             <Font name="Georgia Bold" size="33.0" />
          </font>
       </Text>
-      <Text layoutX="120.0" layoutY="227.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Huella">
+      <Text layoutX="120.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Huella">
          <font>
             <Font name="Georgia Bold" size="26.0" />
          </font>
       </Text>
-      <Text layoutX="400.0" layoutY="227.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Habito">
+      <Text layoutX="400.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Habito">
+         <font>
+            <Font name="Georgia Bold" size="26.0" />
+         </font>
+      </Text>
+      <HBox alignment="CENTER" layoutX="251.0" layoutY="388.0" onMouseClicked="#setComparativaImageView" prefHeight="120.0" prefWidth="120.0" styleClass="rounded-pane">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <children>
+            <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/Comparativa.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </children>
+      </HBox>
+      <Text layoutX="225.0" layoutY="374.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Comparativa">
          <font>
             <Font name="Georgia Bold" size="26.0" />
          </font>

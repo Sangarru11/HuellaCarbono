@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.StackedBarChart?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1075.0" style="-fx-background-color: #e0eaebe7;" stylesheets="@css/Comparativa.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.HuellaCarbono.view.ComparativaController">
+   <children>
+      <HBox alignment="CENTER" layoutX="983.0" layoutY="621.0" onMouseClicked="#goTosHuellaHabito" prefHeight="60.0" prefWidth="60.0" styleClass="rounded-pane">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <children>
+            <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/Return.png" />
+               </image>
+            </ImageView>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="115.0" layoutY="140.0" prefHeight="43.0" prefWidth="296.0" styleClass="rounder-border">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tus Datos">
+               <font>
+                  <Font name="Georgia Bold" size="30.0" />
+               </font>
+            </Text>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="640.0" layoutY="140.0" prefHeight="43.0" prefWidth="296.0" styleClass="rounder-border">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Datos Usuarios">
+               <font>
+                  <Font name="Georgia Bold" size="30.0" />
+               </font>
+            </Text>
+         </children>
+      </HBox>
+      <HBox layoutX="-13.0" layoutY="-15.0" prefHeight="100.0" prefWidth="272.0" styleClass="rounded-pane" />
+      <HBox alignment="CENTER" layoutX="1.0" layoutY="1.0" prefHeight="62.0" prefWidth="169.0">
+         <children>
+            <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/HuellaCarbonoLogo.PNG" />
+               </image>
+            </ImageView>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Comparativa">
+               <font>
+                  <Font name="Georgia" size="28.0" />
+               </font>
+            </Text>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="13.0" layoutY="194.0" prefHeight="400.0" prefWidth="500.0" styleClass="rounded-pane">
+         <children>
+            <StackedBarChart fx:id="DatosUsuarioPrincipal">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis side="LEFT" />
+              </yAxis>
+               <HBox.margin>
+                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+               </HBox.margin>
+            </StackedBarChart>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="538.0" layoutY="194.0" prefHeight="400.0" prefWidth="500.0" styleClass="rounded-pane">
+         <children>
+            <StackedBarChart fx:id="DatosUsuarios">
+               <xAxis>
+                  <CategoryAxis side="BOTTOM" />
+               </xAxis>
+               <yAxis>
+                  <NumberAxis side="LEFT" />
+               </yAxis>
+               <HBox.margin>
+                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+               </HBox.margin>
+            </StackedBarChart>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="93.0" layoutY="549.0" prefHeight="34.0" prefWidth="159.0" styleClass="rounded-pane">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Transporte">
+               <font>
+                  <Font name="Georgia Bold" size="24.0" />
+               </font>
+            </Text>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="299.0" layoutY="549.0" prefHeight="34.0" prefWidth="159.0" styleClass="rounded-pane">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Energia">
+               <font>
+                  <Font name="Georgia Bold" size="24.0" />
+               </font>
+            </Text>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="620.0" layoutY="549.0" prefHeight="34.0" prefWidth="159.0" styleClass="rounded-pane">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Transporte">
+               <font>
+                  <Font name="Georgia Bold" size="24.0" />
+               </font>
+            </Text>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="826.0" layoutY="549.0" prefHeight="34.0" prefWidth="159.0" styleClass="rounded-pane">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Energia">
+               <font>
+                  <Font name="Georgia Bold" size="24.0" />
+               </font>
+            </Text>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

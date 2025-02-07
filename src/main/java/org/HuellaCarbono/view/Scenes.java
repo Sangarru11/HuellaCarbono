@@ -7,6 +7,7 @@ public enum Scenes {
     MainPage("view/MainPage.fxml"),
     RegistrarHuella("view/RegistrarHuella.fxml"),
     RegistrarHabito("view/RegistrarHabito.fxml"),
+    Comparativa("view/Comparativa.fxml"),
     MainPageHabito("view/MainPageHabito.fxml");
 
     private String url;

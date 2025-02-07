@@ -1,3 +1,4 @@
+// HuellaDAO.java
 package org.HuellaCarbono.model.DAO;
 
 import org.HuellaCarbono.model.entity.Habito;
@@ -76,10 +77,23 @@ public class HuellaDAO implements DAO<Huella, String> {
         return huellas;
     }
 
+    public List<Huella> findByUserId(Integer userId) {
+        Session ss = sF.openSession();
+        ss.beginTransaction();
+        List<Huella> huellas = ss.createQuery("from Huella h join fetch h.idActividad a join fetch a.idCategoria where h.idUsuario.id = :userId", Huella.class)
+                .setParameter("userId", userId)
+                .list();
+        ss.getTransaction().commit();
+        ss.close();
+        return huellas;
+    }
+
     public List<Huella> findByUser(Usuario usuario) {
         Session ss = sF.openSession();
         ss.beginTransaction();
-        List<Huella> huellas = ss.createQuery("from Huella h join fetch h.idActividad a join fetch a.idCategoria where h.idUsuario = :usuario", Huella.class).setParameter("usuario", usuario).list();
+        List<Huella> huellas = ss.createQuery("from Huella h join fetch h.idActividad a join fetch a.idCategoria where h.idUsuario = :usuario", Huella.class)
+                .setParameter("usuario", usuario)
+                .list();
         ss.getTransaction().commit();
         ss.close();
         return huellas;
@@ -89,6 +103,7 @@ public class HuellaDAO implements DAO<Huella, String> {
     public void close() throws IOException {
         sF.close();
     }
+
     public static HuellaDAO build() {
         return new HuellaDAO();
     }
